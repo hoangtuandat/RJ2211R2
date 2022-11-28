@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- kiểm tra chữ cái đầu có phải viết hoa không -->
+    <!-- <script>
+        function isFirstLetterUpperCase(str) {
+            check = /^[A-Z]/;
+            if(check.test(str)) {
+                console.log('Đúng')
+            } else {
+                console.log('Sai')
+            }
+        }
+        isFirstLetterUpperCase('Nguyen van Nam')
+        isFirstLetterUpperCase('abcd')
+    </script> -->
+
+
+    <!-- kiểm tra mã vùng -->
+    <!-- <script>
+        function checkId(str) {
+            check = /^([0-9]{5})-(  [0-9]{4}$)/;
+            if(check.test(str)) {
+                console.log('true');
+            } else {
+                console.log('false')
+            }
+        }
+        checkId('12054-  1236');
+        checkId('1255467');
+    </script> -->
+
+
+
+    <!-- Kiểm tra nhập tên email -->
+    <script>
+        function checkEmail(str) {
+            check = /^[A-Za-z0-9]+@[A-Za-z]+(\.[A-Za-z]+)$/;
+            if(check.test(str)) {
+                console.log('true')
+            } else {
+                console.log('false')
+            }
+        }
+
+        checkEmail('aaa@gmail.com');
+        checkEmail('ho_@gmail.com')
+    </script>
+</body>
+</html>
