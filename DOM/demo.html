@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- <script>
         let div = document.createElement('div');
         div.id = 'content';
         div.innerHTML = '<p>Tạo HTML</p>';
         document.body.appendChild(div)
     </script> -->
-
-
-    
 
     <!-- tạo phần tử con vào cuối danh sách -->
 
@@ -30,8 +27,6 @@
         menu.appendChild(createMenuItem('home'));
     </script> -->
 
-
-
     <!-- chèn một phần tử vào trước một phần tử khác-->
     <!-- <ul id="create">
         <li>1</li>
@@ -44,9 +39,16 @@
         create.insertBefore(li, create.firstElementChild);
     </script> -->
 
-
-
-    
-
-</body>
+    <script>
+            function checkText(str) {
+                check = /^.{1,}\./;
+                if(check.test(str)) {
+                    console.log('khớp')
+                } else {
+                    console.log('không khớp')
+                }
+            }
+            checkText('e2325qưeqw54r234.')
+    </script>
+  </body>
 </html>
