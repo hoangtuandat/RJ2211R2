@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let promise = (sk) => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             if(sk) {
+        //                 resolve(2)
+        //             }else {
+        //                 reject(new Error(`Ốm mẹ rồi`))
+        //             }
+        //         })
+        //     })
+        // }
+        // promise(true)
+        // .then((result) => {
+        //     console.log(`Có ${result} cái bánh`)
+        // })
+        // .catch((err) => {
+        //     consolse.log(err);
+        // })
+
+        let countValue = new Promise(function (resolve, reject) {
+            reject('Promise rejected');
+        });
+        countValue.then(
+            function successValue(result) {
+                console.log(result);
+            },
+        )
+
+            // executes if there is an error
+            .catch(
+                function errorValue(result) {
+                    console.log(result);
+                }
+            );
+
+    </script>
+</body>
+
+</html>
