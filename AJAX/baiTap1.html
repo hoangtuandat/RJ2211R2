@@ -9,17 +9,21 @@
 <body>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        function getJSONAPI() {
+        function getJJSONImage() {
             return new Promise(function(resolve) {
-                axios.get('https://jsonplaceholder.typicode.com/posts')
+                axios.get('https://api.giphy.com/v1/gifs/search?q={t%E1%BB%AB%20kh%C3%B3a}&api_key=DfyVfQmYRV6hoan3p0b9cBtJTM3H9cqk')
                 .then(function(json) {
                     resolve(json.data);
                 })
             })
         }
-        getJSONAPI().then(ketqua => {
-            console.log(ketqua);
-        })
+
+        function getImage() {
+            getJJSONImage().then(result => {
+                console.log(result)
+            })
+        }
+        getImage()
     </script>
 </body>
 </html>
