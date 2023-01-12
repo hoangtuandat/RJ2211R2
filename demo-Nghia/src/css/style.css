@@ -1,0 +1,6 @@
+.container{
+    display: flex;
+}
+.col-md-4{
+    text-align: left;
+}
