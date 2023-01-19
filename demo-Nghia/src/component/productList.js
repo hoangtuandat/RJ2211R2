@@ -9,13 +9,15 @@ class ProductList extends React.Component {
     unit: "",
   };
 
-  HandleOnchange = (event) => {
-    // this.props.addProduct ({
-    //   id: this.state.id,
-    //   name: this.state.name,
-    //   price: this.state.price,
-    //   unit: this.state.unit
-    // })
+  HandleOnchange = () => {
+    this.setState({
+      
+    })
+  }
+
+  HandleOnclick = () => {
+    
+    
   }
   render() {
     return (
@@ -56,6 +58,7 @@ class ProductList extends React.Component {
                   type="text"
                   value={this.props.productInfo.price}
                   placeholder="Nhập giá sản phẩm"
+                  onChange={(event) => this.HandleOnchange(event)}
                 />
               </td>
             </tr>
@@ -65,7 +68,7 @@ class ProductList extends React.Component {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  onChange={this.HandleOnchange()}
+                  onChange={this.HandleOnclick()}
                 >
                   Add
                 </button>

@@ -1,35 +1,51 @@
-import React from 'react'
+import React, { Component } from "react";
 
-class Addtodo extends React.Component {
+export default class Addtodo extends Component {
   state = {
-    title: ""
+    firstName: "",
+    lastName: ""
   }
-  handleOnchange = (event) => {
-    this.setState ({
-      title: event.target.value
+  handleOnchangeFirstName = (event) => {
+    this.setState({
+      firstName : event.target.value
     })
   }
-
-  handleAddTodo = () => {
+  handleOnchangeLastName = (event) => {
+    this.setState({
+      lastName: event.target.value
+    })
+  }
+  handleOnclickAdd = () => {
     let todo = {
-      id: Math.floor(Math.random()*1000),
-      title: this.state.title
+      id: Math.floor(Math.random()*10000),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
     }
-    this.props.addtodo(todo);
+    this.props.addNewTodo(todo);
   }
 
   render() {
-    let title = this.state.title;
+    let {firstName} = this.state;
+    let {lastName} = this.state;
     return (
       <div>
-        <input type="text" value={title}
-        onChange={(event) => this.handleOnchange(event)}
-        />
-        <button
-        onClick={() => this.handleAddTodo()}
-        >Add</button>
+        <form >
+          <label >First name:</label>
+          <br />
+          <input type="text"  value={firstName}
+            onChange = {(event) => this.handleOnchangeFirstName(event)}
+          />
+          <br />
+          <label >Last name:</label>
+          <br />
+          <input type="text"  value={lastName}
+          onChange = {(event) => this.handleOnchangeLastName(event)}/>
+          <br />
+          <button type="button" className="button" 
+          onClick={() => this.handleOnclickAdd()}
+          >Add</button>
+        </form>
       </div>
-    )
+    );
   }
 }
-export default Addtodo;

@@ -55,6 +55,13 @@ class Container extends Component {
         unit: item.unit,
       }
     })
+
+    let {product, productList} = this.state;
+    let isObjEmpty = Object.keys(product).length === 0;
+
+    // save
+
+    
   };
   
   addProduct = (todo) => {
