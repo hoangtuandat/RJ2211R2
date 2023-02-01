@@ -9,12 +9,13 @@ class NewProduct extends React.Component {
   }
   render() {
     return (
-      <div class="col-md-8">
+      <div className="col-md-8">
         <fieldset className="border p-2">
             <legend className="scheduler-border">Danh sách sản phẩm</legend>
            
             <table className="table table-sm table-striped table-bordered table-hover">
                 <thead className="thead-dark">
+                  <tbody>
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Tên sản phẩm</th>
@@ -24,6 +25,8 @@ class NewProduct extends React.Component {
                             <div className="text-center">#</div>
                         </th>
                     </tr>
+                  </tbody>
+                    
                     </thead>
                     <tbody>
                       {

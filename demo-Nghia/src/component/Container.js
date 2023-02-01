@@ -2,44 +2,36 @@ import React, { Component } from "react";
 import ProductList from "./productList";
 import NewProduct from "./NewProduct";
 import "../css/style.css";
+import productAPI from "../API/ProductAPI";
 
 class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
       product: {},
-      productList: [
-        {
-          id: 1,
-          name: "Iphone",
-          price: 20000000,
-          unit: "chiếc",
-        },
-        {
-          id: 2,
-          name: "Samsung",
-          price: 15000000,
-          unit: "chiếc",
-        },
-        {
-          id: 3,
-          name: "Saomie",
-          price: 10000000,
-          unit: "chiếc",
-        },
-      ],
+      productList: [],
     };
   }
 
-  deleteProduct = (id) => {
-    let arr = [...this.state.productList];
-    let index = arr.findIndex(function (i) {
-      return i.id === id;
-    });
-    arr.splice(index, 1);
+  fetchProduct = async () => {
+    const response = await productAPI.getAll();
     this.setState({
-      productList: arr,
-    });
+      productList : [...response.data]
+    })
+  }
+
+  componentDidMount() {
+    this.fetchProduct();
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  deleteProduct = async (id) => {
+    await productAPI.delete(id).then(
+      async () => this.fetchProduct()
+    )
   };
 
   editProduct = (id) => {
