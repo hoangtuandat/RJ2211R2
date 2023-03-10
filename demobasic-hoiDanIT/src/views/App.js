@@ -9,8 +9,9 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import ListUser from './Users/ListUser';
+import DetailUser from './Users/DetailUser';
 
 
 // 2 components: class/ function (arrow, function)
@@ -32,6 +33,12 @@ function App() {
           </Route>
           <Route path="/about">
           <MyComponent />
+          </Route>
+          <Route path="/user" exact>
+          <ListUser />
+          </Route>
+          <Route path="/user/:id">
+          <DetailUser />
           </Route>
         </Switch>
       </header>

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import ProductList from "./productList";
 import NewProduct from "./NewProduct";
 import "../css/style.css";
 import productAPI from "../API/ProductAPI";
 
-class Container extends Component {
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

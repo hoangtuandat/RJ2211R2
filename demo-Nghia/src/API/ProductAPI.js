@@ -1,5 +1,6 @@
 import AxiosClient from "../commons/AxiosClient";
 
+// call API
 const url = "/product"
 const productAPI = {
     getAll : () => {

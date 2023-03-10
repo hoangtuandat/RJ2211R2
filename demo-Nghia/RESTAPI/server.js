@@ -89,6 +89,60 @@ app.get('/customer', function (req, res) {
         res.end(JSON.stringify(JSON.parse(data),null,2));  
     });  
 });
+
+// start phim API
+app.get('/phim', function (req, res) {  
+    fs.readFile( `${__dirname}/data/phim.json`, 'utf8', function (err, data) {   
+        res.end(JSON.stringify(JSON.parse(data),null,2));  
+    });  
+});
+app.post('/phim', function (req, res) {  
+    fs.readFile( `${__dirname}/data/phim.json`, 'utf8', function (err, data) {  
+        data = JSON.parse(data);
+        var max = 0;
+        if(data.length >0){
+            var maxObject = data.reduce(function(prev, current) {
+                return (prev.Id > current.Id) ? prev : current
+            });
+            max = maxObject.Id;
+        }
+        var newproduct = {Id:max+1,...req.body};
+        data.push(newproduct);
+        fs.writeFile(`${__dirname}/data/phim.json`, JSON.stringify(data), function (err) {
+            if (err) return console.log(err);
+            console.log('Create phim success.');
+        }); 
+        res.end(JSON.stringify(data));  
+    });  
+})  
+
+app.get('/phim/:id', function (req, res) {  
+    fs.readFile( `${__dirname}/data/phim.json`, 'utf8', function (err, data) {
+        data = JSON.parse(data);
+        var item = data.find(x => x.Id.toString() === req.params.id);  
+        res.end(JSON.stringify(item));  
+    }); 
+});
+
+app.delete('/phim/:id', function (req, res) {  
+    fs.readFile( `${__dirname}/data/phim.json`, 'utf8', function (err, data) {  
+        data = JSON.parse(data);
+        var index = data.findIndex(function(i){
+            return i.Id.toString() === req.params.id;
+        });
+        if(index >-1)
+            data.splice(index, 1);
+        fs.writeFile(`${__dirname}/data/phim.json`, JSON.stringify(data), function (err) {
+            if (err) return console.log(err);
+            console.log('Delete phim success.');
+          }); 
+        res.end(JSON.stringify(data));  
+    });  
+})  
+
+
+
+// end phim API
 app.post('/customer', function (req, res) {  
     fs.readFile( `${__dirname}/data/customer.json`, 'utf8', function (err, data) {  
         data = JSON.parse(data);
@@ -116,6 +170,23 @@ app.get('/customer/:id', function (req, res) {
         res.end(JSON.stringify(item));  
     }); 
 });
+
+
+app.delete('/product/:id', function (req, res) {  
+    fs.readFile( `${__dirname}/data/product.json`, 'utf8', function (err, data) {  
+        data = JSON.parse(data);
+        var index = data.findIndex(function(i){
+            return i.Id.toString() === req.params.id;
+        });
+        if(index >-1)
+            data.splice(index, 1);
+        fs.writeFile(`${__dirname}/data/product.json`, JSON.stringify(data), function (err) {
+            if (err) return console.log(err);
+            console.log('Delete product success.');
+          }); 
+        res.end(JSON.stringify(data));  
+    });  
+})  
 
 app.put('/customer/:id', function(req,res){
     // First read existing users.  

@@ -1,0 +1,18 @@
+[
+    {
+        "id":1,
+        "name": "Infinity war",
+        "actor": ["hoàng Anh","Nhung"],
+        "releaseDate": "20/05/2022",
+        "country": "us",
+        "post": "https://nld.mediacdn.vn/2019/4/3/avengers-endgame-poster-og-social-crop-15542720808371479664269.jpg"
+    },
+    {
+        "id":2,
+        "name": "Hunk",
+        "actor": ["hoàng Anh","Nhung"],
+        "releaseDate": "20/05/2022",
+        "country": "us",
+        "post": "D:/LEARN/JS2211R2/RJ2211R2/demo-Nghia/RESTAPI/data/image/image/poster.jpg"
+    }
+]
