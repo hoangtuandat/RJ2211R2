@@ -1,12 +1,12 @@
 import './App.css';
 import AppbarMui from './AppbarMui'
-import Countries from './Countries';
+import MyClass from './MyClass';
 
 function App() {
   return (
     <div className="App">
       <AppbarMui />
-      <Countries />
+      <MyClass />
     </div>
   );
 }

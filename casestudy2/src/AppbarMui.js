@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React  from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,14 +12,20 @@ import ComboBox from './ComboBox';
 
 
 
-export default function SearchAppBar() {
+export default function SearchAppBar(
+  HandleSelectClassChange,
+	handleAddStudent,
+	totalStudents,
+) {
+  const [selectedClass, selectClassChange] = React.useState('');
 
-  const handleChange = (country) => {
-    console.log('MyAppBar', country)
+  const handleChange = (seclectedClass) => {
+    console.log('MyAppBar', seclectedClass);
+    selectClassChange(selectedClass);
+		HandleSelectClassChange(selectedClass);
   }
-  const totalCountries = (totalCountries) => {
-    console.log('MyAppBar totalCountries', totalCountries)
-  }
+  
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -42,7 +48,7 @@ export default function SearchAppBar() {
             ReactJS
           </Typography>
           
-            <ComboBox handleChange={handleChange} totalCountries={totalCountries}/>
+            <ComboBox handleChange={handleChange}/>
             <BagdeMui />
         </Toolbar>
       </AppBar>
