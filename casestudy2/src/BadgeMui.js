@@ -1,9 +1,10 @@
-import * as React from 'react';
+import  React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
-function notificationsLabel(count: count) {
+function NotificationsLabel(count) {
+  // const [totalCountries, setTotalCountries] = useState(null);
   if (count === 0) {
     return 'no notifications';
   }
@@ -14,10 +15,11 @@ function notificationsLabel(count: count) {
 }
 
 export default function AccessibleBadges() {
+  
   return (
-    <IconButton aria-label={notificationsLabel(100)}>
-      <Badge badgeContent={100} color="secondary">
-        < PermIdentityIcon/>
+    <IconButton aria-label={NotificationsLabel(100)}>
+      <Badge badgeContent={20} color="secondary">
+        <PermIdentityIcon />
       </Badge>
     </IconButton>
   );

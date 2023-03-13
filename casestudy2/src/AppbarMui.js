@@ -13,6 +13,13 @@ import ComboBox from './ComboBox';
 
 
 export default function SearchAppBar() {
+
+  const handleChange = (country) => {
+    console.log('MyAppBar', country)
+  }
+  const totalCountries = (totalCountries) => {
+    console.log('MyAppBar totalCountries', totalCountries)
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -35,7 +42,7 @@ export default function SearchAppBar() {
             ReactJS
           </Typography>
           
-            <ComboBox />
+            <ComboBox handleChange={handleChange} totalCountries={totalCountries}/>
             <BagdeMui />
         </Toolbar>
       </AppBar>
