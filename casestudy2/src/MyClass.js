@@ -11,8 +11,8 @@ class MyClass extends Component {
       { field: "lastName", headerName: "Họ", width: 150 },
       { field: "country", headerName: "CQuốc gia", width: 150 },
       { field: "phone", headerName: "Điện thoại", width: 150 },
-      { field: "date", headerName: "Ngày sinh", width: 150 },
-      { field: "thumbnail", headerName: "Ảnh", width: 150 },
+      { field: "dob", headerName: "Ngày sinh", width: 150 },
+      { field: "picture", headerName: "Ảnh", width: 150 },
   ];
 
     this.state = {
@@ -28,23 +28,23 @@ class MyClass extends Component {
 			props.className,
 			props.newStudent
 		);
-    return{}
-		// if (props.className && props.newStudent) {
-		// 	const students = state.students;
-		// 	const newStudent = props.newStudent;
-		// 	newStudent.id = students.length + 1;
-		// 	newStudent.className = props.className;
-		// 	console.log('MyClass newStudent', newStudent);
+    // return{}
+		if (props.className && props.newStudent) {
+			const students = [...state.students];
+			const newStudent = props.newStudent;
+			newStudent.id = students.length + 1;
+			newStudent.className = props.className;
+			// console.log('MyClass newStudent', newStudent);
 
-		// 	students.push(newStudent);
-		// 	return { selectedClass: props.className, students: students };
-		// } else {
-		// 	return { selectedClass: props.className };
-		// }
+			students.push(newStudent);
+			return { selectedClass: props.className, students: students };
+		} else {
+			return {selectedClass: props.className,} ;
+		}
 	}
   
   render() {
-    console.log('MyClass render', this.state.selectedClass);
+    // console.log('MyClass render', this.state.selectedClass);
     // const displayStudents = [...this.state.students]
     let displayStudents = [...this.state.students];
 		displayStudents = displayStudents.filter(
