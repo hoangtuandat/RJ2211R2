@@ -1,30 +1,39 @@
-import * as React  from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
-import BagdeMui from './BadgeMui'
+// import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import Badge from "@mui/material/Badge";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
-import ComboBox from './ComboBox';
+import ComboBox from "./ComboBox";
+
+export default function AppbarMui({
+  classes,
+  handleSelectClassChange,
+  handleAddStudent,
+  totalStudents
+}) {
+  const [selectedClass, handleClassChange] = React.useState("");
+
+  const handleChange = (selectedClass) => {
+    console.log("MyAppBar", selectedClass);
+    handleClassChange(selectedClass);
+    handleSelectClassChange(selectedClass);
+  };
+
+  const addStudent = () => {
+    console.log('MyAppBar addStudent');
+    handleAddStudent();
+  };
 
 
 
-export default function SearchAppBar(
-  HandleSelectClassChange,
-	handleAddStudent,
-	totalStudents,
-) {
-  const [selectedClass, selectClassChange] = React.useState('');
-
-  const handleChange = (seclectedClass) => {
-    console.log('MyAppBar', seclectedClass);
-    selectClassChange(selectedClass);
-		HandleSelectClassChange(selectedClass);
-  }
-  
   
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,16 +52,30 @@ export default function SearchAppBar(
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             ReactJS
           </Typography>
-          
-            <ComboBox handleChange={handleChange}/>
-            <BagdeMui />
+
+          <ComboBox handleChange={handleChange} />
+
+          <IconButton
+            aria-label="show 18 new notifications"
+            color="inherit"
+            onClick={addStudent}
+          >
+            <Badge badgeContent={0} color="error">
+              <PersonAddIcon />
+            </Badge>
+          </IconButton>
+
+          <IconButton aria-label="show 18 new notifications" color="inherit">
+            <Badge badgeContent={0} color="error">
+              <PermIdentityIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
-

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import moment from 'moment';
 
-class App extends Component {
+
+class MyClass extends Component {
   constructor(props) {
     super(props);
 
@@ -21,44 +21,41 @@ class App extends Component {
       selectedClass: props.selectedClass,
     };
   }
-  componentDidMount() {
-    this.getData();
-  }
 
-  getData = () => {
-    fetch("https://randomuser.me/api/?results=5")
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          console.log("Indata", data.results);
-          let id = 1;
-          const dataWithId = data.results.map((record) => {
-            return {
-              id: id++,
-              firstName: record.name.first,
-              lastName: record.name.last,
-              country: record.location.country,
-              phone: record.phone,
-              date: moment(record.dob.date).format('DD/MM/YYYY'),
-              thumbnail: record.picture.thumbnail,
-            };
-          });
-          console.log("dataWithId", dataWithId);
-          this.setState({ students: dataWithId });
-        },
-        (error) => {
-          console.log("error", error);
-        }
-      );
-  };
+  static getDerivedStateFromProps(props, state) {
+		console.log(
+			'MyClass getDerivedStateFromProps',
+			props.className,
+			props.newStudent
+		);
+    return{}
+		// if (props.className && props.newStudent) {
+		// 	const students = state.students;
+		// 	const newStudent = props.newStudent;
+		// 	newStudent.id = students.length + 1;
+		// 	newStudent.className = props.className;
+		// 	console.log('MyClass newStudent', newStudent);
+
+		// 	students.push(newStudent);
+		// 	return { selectedClass: props.className, students: students };
+		// } else {
+		// 	return { selectedClass: props.className };
+		// }
+	}
+  
   render() {
-    const displayStudent = [...this.state.students];
+    console.log('MyClass render', this.state.selectedClass);
+    // const displayStudents = [...this.state.students]
+    let displayStudents = [...this.state.students];
+		displayStudents = displayStudents.filter(
+			(data) => data.className === this.state.selectedClass
+		);
     return (
       <div style={{ height: 600, width: "100%" }}>
-        <DataGrid rows={displayStudent} columns={this.state.columns} />
+        <DataGrid rows={displayStudents} columns={this.state.columns} />
       </div>
     );
   }
 }
 
-export default App;
+export default MyClass;
