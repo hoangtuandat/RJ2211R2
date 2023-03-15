@@ -10,7 +10,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from '@mui/material/Alert';
+
+import Avatar from '@mui/material/Avatar';
 
 class MyClass extends Component {
   constructor(props) {
@@ -32,13 +35,19 @@ class MyClass extends Component {
           </div>
         ),
       },
-      { field: "id", headerName: "ID", width: 150 },
+      { field: "picture", headerName: "Ảnh", width: 150,
+      renderCell: (params) => (
+        <div>
+          <Avatar alt="Remy Sharp" src={params.value} />
+        </div>
+      ),
+    },
       { field: "firstName", headerName: "Tên", width: 150 },
       { field: "lastName", headerName: "Họ", width: 150 },
-      { field: "country", headerName: "CQuốc gia", width: 150 },
+      { field: "country", headerName: "Quốc gia", width: 150 },
       { field: "phone", headerName: "Điện thoại", width: 150 },
       { field: "dob", headerName: "Ngày sinh", width: 150 },
-      { field: "picture", headerName: "Ảnh", width: 150 },
+      
     ];
 
     this.state = {
@@ -46,11 +55,11 @@ class MyClass extends Component {
       students: [],
       selectedClass: props.selectedClass,
       openConfirmation: false,
-      editID: null,
+      editStudent: null,
       totalStudents: 0,
       maxID: 1,
       openSnackBar: false,
-      snackBarInfo: '',
+      snackBarInfo: "",
     };
   }
 
@@ -76,7 +85,7 @@ class MyClass extends Component {
     if (props.className && props.newStudent) {
       const students = [...state.students];
       const newStudent = props.newStudent;
-      let currentId = state.maxID
+      let currentId = state.maxID;
       newStudent.id = currentId;
       newStudent.className = props.className;
       newStudent.actions = newStudent.id;
@@ -91,7 +100,7 @@ class MyClass extends Component {
         totalStudents: totalStudents,
         maxID: ++currentId,
         openSnackBar: true,
-        snackBarInfo: "Đã thêm sinh viên thành công!"
+        snackBarInfo: "Đã thêm sinh viên thành công!",
       };
     } else {
       if (props.className !== state.selectedClass) {
@@ -105,8 +114,14 @@ class MyClass extends Component {
     // console.log("editRow", id);
   };
   deletetRow = (id) => {
-    // console.log("deletetRow", id);
-    this.setState({ openConfirmation: true, editID: id });
+    const editStudent = this.state.students.find(
+      (students) => students.id === id
+    )
+    // console.log("deletetRow", id, editStudent);
+    if(editStudent) {
+      this.setState({ openConfirmation: true, editStudent: id });
+    }
+    
   };
 
   handleCloseConfirmation = (yes) => {
@@ -115,19 +130,19 @@ class MyClass extends Component {
     if (yes) {
       let dialogStudent = this.state.students;
       dialogStudent = dialogStudent.filter(
-        (data) => data.id !== this.state.editID
+        (data) => data.id !== this.state.editStudent
       );
       const totalStudents = this.state.totalStudents - 1;
-      // console.log('dialog',this.state.editID)
+      // console.log('dialog',this.state.editStudent)
       this.setState({ students: dialogStudent, totalStudents: totalStudents });
       this.props.handleTotalStudents(totalStudents);
-      this.setState({ openSnackBar: true, snackBarInfo: 'Xoá thành công!'});
+      this.setState({ openSnackBar: true, snackBarInfo: "Xoá thành công!" });
     }
   };
 
   handleSnackBarClose = () => {
-    this.setState({openSnackBar: false});
-  }
+    this.setState({ openSnackBar: false });
+  };
 
   render() {
     // console.log('MyClass render', this.state.selectedClass);
@@ -139,6 +154,8 @@ class MyClass extends Component {
     return (
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid rows={displayStudents} columns={this.state.columns} />
+
+
         <Dialog
           open={this.state.openConfirmation}
           onClose={() => this.state.handleCloseConfirmation(false)}
@@ -163,13 +180,19 @@ class MyClass extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal:'left' }}
-        open={this.state.openSnackBar}
-        onClose= {this.handleSnackBarClose}
-        message={this.state.snackBarInfo}
-        key={ {vertical : 'bottom' , horizontal: 'left'}}
-      />
+
+
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+            open={this.state.openSnackBar}
+            onClose={this.handleSnackBarClose}
+            message={this.state.snackBarInfo}
+            key={{ vertical: "bottom", horizontal: "left" }}
+          >
+            <Alert onClose={this.handleSnackBarClose} severity="info" sx={{ width: '100%' }}>{this.state.snackBarInfo}
+  </Alert>
+          </Snackbar>
+          
       </div>
     );
   }
