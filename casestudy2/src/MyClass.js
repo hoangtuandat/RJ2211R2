@@ -10,6 +10,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import Snackbar from '@mui/material/Snackbar';
+
 class MyClass extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,8 @@ class MyClass extends Component {
       editID: null,
       totalStudents: 0,
       maxID: 1,
+      openSnackBar: false,
+      snackBarInfo: '',
     };
   }
 
@@ -86,6 +90,8 @@ class MyClass extends Component {
         students: students,
         totalStudents: totalStudents,
         maxID: ++currentId,
+        openSnackBar: true,
+        snackBarInfo: "Đã thêm sinh viên thành công!"
       };
     } else {
       if (props.className !== state.selectedClass) {
@@ -115,8 +121,13 @@ class MyClass extends Component {
       // console.log('dialog',this.state.editID)
       this.setState({ students: dialogStudent, totalStudents: totalStudents });
       this.props.handleTotalStudents(totalStudents);
+      this.setState({ openSnackBar: true, snackBarInfo: 'Xoá thành công!'});
     }
   };
+
+  handleSnackBarClose = () => {
+    this.setState({openSnackBar: false});
+  }
 
   render() {
     // console.log('MyClass render', this.state.selectedClass);
@@ -152,6 +163,13 @@ class MyClass extends Component {
             </Button>
           </DialogActions>
         </Dialog>
+        <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal:'left' }}
+        open={this.state.openSnackBar}
+        onClose= {this.handleSnackBarClose}
+        message={this.state.snackBarInfo}
+        key={ {vertical : 'bottom' , horizontal: 'left'}}
+      />
       </div>
     );
   }
