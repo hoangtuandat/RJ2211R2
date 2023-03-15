@@ -22,13 +22,13 @@ export default function AppbarMui({
   const [selectedClass, handleClassChange] = React.useState("");
 
   const handleChange = (selectedClass) => {
-    console.log("MyAppBar", selectedClass);
+    // console.log("MyAppBar", selectedClass);
     handleClassChange(selectedClass);
     handleSelectClassChange(selectedClass);
   };
 
   const addStudent = () => {
-    console.log('MyAppBar addStudent');
+    // console.log('MyAppBar addStudent');
     handleAddStudent();
   };
 
@@ -70,7 +70,7 @@ export default function AppbarMui({
           </IconButton>
 
           <IconButton aria-label="show 18 new notifications" color="inherit">
-            <Badge badgeContent={0} color="error">
+            <Badge badgeContent={totalStudents} color="error">
               <PermIdentityIcon />
             </Badge>
           </IconButton>
